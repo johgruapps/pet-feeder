@@ -4,7 +4,7 @@ Adafruit_SoftServo servo;
 #define openPosition 10
 #define closedPosition 180
 
-#define feedingSize 20
+#define feedingSize 15  //How many times the feeder "shakes"
 
 int led = 1; // blink 'digital' pin 1 - AKA the built in red LED
 
