@@ -7,3 +7,4 @@ To activate the pet feeder I'm using automation in the Philips Hue app to start 
 This way I can manually feed the cat earlier if I want to, or adjust the amount of feedings per day.
 
 ![screenshot](image1.jpg)
+![screenshot](image2.jpg)
