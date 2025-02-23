@@ -4,6 +4,8 @@ Adafruit_SoftServo servo;
 #define openPosition 10
 #define closedPosition 180
 
+#define feedingSize 20
+
 int led = 1; // blink 'digital' pin 1 - AKA the built in red LED
 
 void setup() {
@@ -51,7 +53,7 @@ void blinkLed() {
 
 void jerky() {
   // "Shakes" the feeder to spit out more food
-  for (int jerk = 0; jerk <= 20; jerk++) {
+  for (int jerk = 0; jerk <= feedingSize; jerk++) {
     servo.write(40);
     delay(50);
 
@@ -81,7 +83,7 @@ void close(){
   for (int blink = 0; blink <= 2; blink++) {
     blinkLed();
   }
-  
+
   // Smooth servo movement
   for (int pos = openPosition; pos <= closedPosition; pos++) {
     servo.write(pos);
