@@ -16,18 +16,24 @@ void setup() {
   servo.attach(servoPin);   // Attach the servo to pin 0 on Trinket
   servo.write(closedPosition);
   flashLed();
+
   open();
   flashLed();
+
   close();
   flashLed();
+
+  //Make sure the feeder is closed!
   servo.write(closedPosition);
 }
 
 void loop() {
+  //Nothing here.
 }
 
 void flashLed() {
-  for (int jerk = 0; jerk <= 20; jerk++) {
+  //Flash the LED multiple times
+  for (int flash = 0; flash <= 20; flash++) {
     digitalWrite(led, HIGH); 
     delay(40);
     digitalWrite(led, LOW);
@@ -36,6 +42,7 @@ void flashLed() {
 }
 
 void blinkLed() {
+  //Blink the LED one time.
   digitalWrite(led, HIGH); 
   delay(50);
   digitalWrite(led, LOW);
@@ -43,12 +50,14 @@ void blinkLed() {
 }
 
 void jerky() {
-  // Sweep from 180° to 0°
+  // "Shakes" the feeder to spit out more food
   for (int jerk = 0; jerk <= 20; jerk++) {
     servo.write(40);
     delay(50);
+
     servo.write(0);
     delay(20); 
+
     blinkLed();
   }
   servo.write(openPosition);
@@ -60,7 +69,7 @@ void open(){
     blinkLed();
   }
 
-  // Sweep from 180° to 0°
+  // Smooth servo movement
   for (int pos = closedPosition; pos >= openPosition; pos--) {
     servo.write(pos);
     delay(20); // Adjust for smoothness
@@ -72,12 +81,12 @@ void close(){
   for (int blink = 0; blink <= 2; blink++) {
     blinkLed();
   }
-  // Sweep from 0° to 180°
+  
+  // Smooth servo movement
   for (int pos = openPosition; pos <= closedPosition; pos++) {
     servo.write(pos);
     delay(20); // Adjust for smoothness
   }
-  delay(HOUR_DELAY_6); 
 }
 
 // We'll take advantage of the built in millis() timer that goes off
